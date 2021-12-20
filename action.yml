@@ -53,6 +53,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: install reviewdog
+      shell: bash
+      run: curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /usr/local/bin/ v0.13.0
+
     - name: install clippy-reviewdog-filter
       shell: bash
       run: cargo install --git https://github.com/qnighy/clippy-reviewdog-filter.git
