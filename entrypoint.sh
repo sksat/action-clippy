@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}"
+
 cargo clippy --message-format json ${INPUT_CLIPPY_FLAGS} 2>&1 \
   | clippy-reviewdog-filter \
   | reviewdog \

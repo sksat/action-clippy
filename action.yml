@@ -11,6 +11,9 @@ inputs:
     description: 'GITHUB_TOKEN.'
     default: '${{ github.token }}'
     required: true
+  working_directory:
+    description: 'clippy working directory'
+    required: false
   tool_name:
     description: 'Tool name to use for reviewdog reporter'
     default: 'clippy'
@@ -59,6 +62,7 @@ runs:
       run: ${{ github.action_path }}/entrypoint.sh
       env:
         REVIEWDOG_GITHUB_API_TOKEN: ${{ inputs.github_token }}
+        INPUT_WORKDIR: ${{ inputs.working_directory }}
         INPUT_TOOL_NAME: ${{ inputs.tool_name }}
         INPUT_LEVEL: ${{ inputs.level }}
         INPUT_REPORTER: ${{ inputs.reporter }}
