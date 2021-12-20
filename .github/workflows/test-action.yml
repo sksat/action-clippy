@@ -26,4 +26,6 @@ jobs:
       - uses: ./
         with:
           working_directory: ./test
-          reporter: github-pr-review
+          level: warning
+          reporter: github-check
+          filter_mode: nofilter
