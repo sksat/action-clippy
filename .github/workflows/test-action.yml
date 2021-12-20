@@ -26,3 +26,4 @@ jobs:
       - uses: ./
         with:
           working_directory: ./test
+          reporter: github-pr-review
