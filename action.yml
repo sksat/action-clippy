@@ -20,7 +20,7 @@ inputs:
     required: true
   level:
     description: 'Report level for reviewdog [info,warning,error]'
-    default: 'error'
+    default: 'warning'
     required: true
   reporter:
     description: |
