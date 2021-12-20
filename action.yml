@@ -11,13 +11,16 @@ inputs:
     description: 'GITHUB_TOKEN.'
     default: '${{ github.token }}'
     required: true
+  working_directory:
+    description: 'clippy working directory'
+    required: false
   tool_name:
     description: 'Tool name to use for reviewdog reporter'
     default: 'clippy'
     required: true
   level:
     description: 'Report level for reviewdog [info,warning,error]'
-    default: 'error'
+    default: 'warning'
     required: true
   reporter:
     description: |
@@ -50,15 +53,24 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: install reviewdog
+      shell: bash
+      run: curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /usr/local/bin/ v0.13.0
+
     - name: install clippy-reviewdog-filter
       shell: bash
-      run: cargo install --git https://github.com/qnighy/clippy-reviewdog-filter.git
+      run: |
+        curl -sLJO 'https://github.com/qnighy/clippy-reviewdog-filter/releases/download/v0.1.1/clippy-reviewdog-filter-x86_64-unknown-linux-musl'
+        mv clippy-reviewdog-filter-x86_64-unknown-linux-musl /usr/local/bin/clippy-reviewdog-filter
+        chmod +x /usr/local/bin/clippy-reviewdog-filter
+        clippy-reviewdog-filter --version
 
     - name: clippy & reviewdog
       shell: bash
       run: ${{ github.action_path }}/entrypoint.sh
       env:
         REVIEWDOG_GITHUB_API_TOKEN: ${{ inputs.github_token }}
+        INPUT_WORKDIR: ${{ inputs.working_directory }}
         INPUT_TOOL_NAME: ${{ inputs.tool_name }}
         INPUT_LEVEL: ${{ inputs.level }}
         INPUT_REPORTER: ${{ inputs.reporter }}

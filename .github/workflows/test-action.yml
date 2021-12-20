@@ -1,0 +1,31 @@
+name: test action-clippy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test_action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install clippy
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: clippy
+
+      - name: check clippy version
+        run: cargo clippy --version
+
+      - uses: ./
+        with:
+          working_directory: ./test
+          level: warning
+          reporter: github-check
+          filter_mode: nofilter
