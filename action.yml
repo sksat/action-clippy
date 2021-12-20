@@ -59,7 +59,11 @@ runs:
 
     - name: install clippy-reviewdog-filter
       shell: bash
-      run: cargo install --git https://github.com/qnighy/clippy-reviewdog-filter.git
+      run: |
+        curl -sLJO 'https://github.com/qnighy/clippy-reviewdog-filter/releases/download/v0.1.1/clippy-reviewdog-filter-x86_64-unknown-linux-musl'
+        mv clippy-reviewdog-filter-x86_64-unknown-linux-musl /usr/local/bin/clippy-reviewdog-filter
+        chmod +x /usr/local/bin/clippy-reviewdog-filter
+        clippy-reviewdog-filter --version
 
     - name: clippy & reviewdog
       shell: bash
