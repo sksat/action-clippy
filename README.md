@@ -1,5 +1,8 @@
 # action-clippy
 
+This composite action runs [clippy](https://github.com/rust-lang/rust-clippy) with [reviewdog](https://github.com/reviewdog/reviewdog). 
+It depends on [clippy-reviewdog-filter](https://github.com/qnighy/clippy-reviewdog-filter).
+
 ## Example workflow
 
 ```yaml
@@ -17,7 +20,7 @@ jobs:
           override: true
           components: clippy
 
-      - uses: sksat@action-clippy@main
+      - uses: sksat/action-clippy@main
         with:
           reporter: github-pr-review
 ```
