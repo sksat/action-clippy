@@ -55,12 +55,18 @@ runs:
   steps:
     - name: install reviewdog
       shell: bash
-      run: curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /usr/local/bin/ v0.13.0
+      env:
+        REVIEWDOG_VERSION: "v0.13.0"
+      run: |
+        curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh \
+          | sh -s -- -b /usr/local/bin/ ${REVIEWDOG_VERSION}
 
     - name: install clippy-reviewdog-filter
       shell: bash
+      env:
+        CLIPPY_REVIEWDOG_FILTER_VERSION: "v0.1.1"
       run: |
-        curl -sLJO 'https://github.com/qnighy/clippy-reviewdog-filter/releases/download/v0.1.1/clippy-reviewdog-filter-x86_64-unknown-linux-musl'
+        curl -sLJO 'https://github.com/qnighy/clippy-reviewdog-filter/releases/download/${CLIPPY_REVIEWDOG_FILTER_VERSION}/clippy-reviewdog-filter-x86_64-unknown-linux-musl'
         mv clippy-reviewdog-filter-x86_64-unknown-linux-musl /usr/local/bin/clippy-reviewdog-filter
         chmod +x /usr/local/bin/clippy-reviewdog-filter
         clippy-reviewdog-filter --version
