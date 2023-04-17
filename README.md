@@ -12,7 +12,7 @@ jobs:
   clippy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: install clippy
         uses: actions-rs/toolchain@v1
         with:
