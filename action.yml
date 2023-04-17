@@ -58,7 +58,7 @@ runs:
       env:
         # datasource=github-releases
         REVIEWDOG_REPO: "reviewdog/reviewdog"
-        REVIEWDOG_VERSION: "v0.13.0"
+        REVIEWDOG_VERSION: "v0.14.1"
       run: |
         curl -sfL "https://raw.githubusercontent.com/${REVIEWDOG_REPO}/master/install.sh" \
           | sh -s -- -b /usr/local/bin/ "${REVIEWDOG_VERSION}"
