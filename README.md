@@ -14,10 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: install clippy
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: stable
-          override: true
           components: clippy
 
       - uses: sksat/action-clippy@main
