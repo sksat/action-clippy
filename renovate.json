@@ -6,7 +6,7 @@
     {
       "fileMatch": ["action.yml"],
       "matchStrings": [
-        "# datasource=(?<datasource>.*?)?\n\\s+(.*)_REPO: \"(?<depName>.*?)\"\n\\s+(.*)_VERSION: (?<currentValue>.*)"
+        "# datasource=(?<datasource>.*?)?\n\\s+(.*)_REPO: \"(?<depName>.*?)\"\n\\s+(.*)_VERSION: \"(?<currentValue>.*)\""
       ],
       "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
     }
