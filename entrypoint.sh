@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eo pipefail
 
 cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}"
 
