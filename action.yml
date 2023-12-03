@@ -61,7 +61,7 @@ runs:
         REVIEWDOG_VERSION: "v0.15.0"
       run: |
         curl -sfL "https://raw.githubusercontent.com/${REVIEWDOG_REPO}/master/install.sh" \
-          | sh -s -- -b /usr/local/bin/ "${REVIEWDOG_VERSION}"
+          | sudo sh -s -- -b /usr/local/bin/ "${REVIEWDOG_VERSION}"
 
     - name: install clippy-reviewdog-filter
       shell: bash
@@ -71,8 +71,8 @@ runs:
         CLIPPY_REVIEWDOG_FILTER_VERSION: "v0.1.1"
       run: |
         curl -sLJO "https://github.com/${CLIPPY_REVIEWDOG_FILTER_REPO}/releases/download/${CLIPPY_REVIEWDOG_FILTER_VERSION}/clippy-reviewdog-filter-x86_64-unknown-linux-musl"
-        mv clippy-reviewdog-filter-x86_64-unknown-linux-musl /usr/local/bin/clippy-reviewdog-filter
-        chmod +x /usr/local/bin/clippy-reviewdog-filter
+        chmod +x clippy-reviewdog-filter-x86_64-unknown-linux-musl
+        sudo mv clippy-reviewdog-filter-x86_64-unknown-linux-musl /usr/local/bin/clippy-reviewdog-filter
         clippy-reviewdog-filter --version
 
     - name: clippy & reviewdog
