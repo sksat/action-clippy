@@ -21,6 +21,8 @@ jobs:
       - name: check clippy version
         run: cargo clippy --version
 
+      - uses: rui314/setup-mold@v1
+
       - uses: ./
         with:
           working_directory: ./test
