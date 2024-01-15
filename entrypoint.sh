@@ -3,6 +3,8 @@ set -eo pipefail
 
 cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}"
 
+cargo clippy --message-format human ${INPUT_CLIPPY_FLAGS}
+
 cargo clippy --message-format json ${INPUT_CLIPPY_FLAGS} 2>&1 \
   | clippy-reviewdog-filter \
   | reviewdog \
