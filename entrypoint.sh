@@ -5,6 +5,8 @@ cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}"
 
 cargo clippy --message-format human ${INPUT_CLIPPY_FLAGS}
 
+# Rust ignore SIGPIPE by default: https://github.com/rust-lang/rust/issues/62569
+# This causes `Broken pipe` error when piping to `clippy-reviewdog-filter`
 cargo clippy --message-format json ${INPUT_CLIPPY_FLAGS} 2>&1 \
   | clippy-reviewdog-filter \
   > /tmp/clippy-checkstyle.xml
