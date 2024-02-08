@@ -32,7 +32,7 @@ jobs:
 | `tool_name`         | ✓ | Tool name to use for reviewdog reporte | `clippy` |
 | `level`             | ✓ | Report level for reviewdog [info,warning,error] | `warning` |
 | `reporter`          | ✓ | Reporter of reviewdog command [github-pr-check,github-pr-review,github-check] | `github-pr-check` |
-| `filter_mode`       | ✓ | Filtering mode for the reviewdog command [added,diff_context,file,nofilter] | `added` |
+| `filter_mode`       | ✓ | Filtering mode for the reviewdog command [added,diff_context,file,nofilter] | `nofilter` |
 | `fail_on_error`     | ✓ | Exit code for reviewdog when errors are found | `false` |
 | `reviewdog_flags`   |   | Additional reviewdog flags | |
 | `clippy_flags`      |   | Additional clippy flags | |
