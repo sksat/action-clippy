@@ -7,18 +7,29 @@ It depends on [clippy-reviewdog-filter](https://github.com/qnighy/clippy-reviewd
 
 ```yaml
 name: reviewdog / clippy
-on: pull_request
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
 jobs:
   clippy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: install clippy
         uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
 
-      - uses: sksat/action-clippy@main
+      - uses: sksat/action-clippy@v0.7.0
+        if: github.event_name == 'push'
+        with:
+          reporter: github-check
+
+      - uses: sksat/action-clippy@v0.7.0
+        if: github.event_name == 'pull_request'
         with:
           reporter: github-pr-review
 ```
